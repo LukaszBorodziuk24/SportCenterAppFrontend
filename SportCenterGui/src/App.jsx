@@ -1,6 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainPage from "./Components/MainPage/MainPage.jsx";
 import RegisterPage from "./Components/RegisterPage/RegisterPage.jsx";
 import LoginPage from "./Components/LoginPage/LoginPage.jsx";
