@@ -1,0 +1,15 @@
+
+
+
+.adminBg{
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../assets/adminBg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.w-90{
+    width: 82vw;
+}

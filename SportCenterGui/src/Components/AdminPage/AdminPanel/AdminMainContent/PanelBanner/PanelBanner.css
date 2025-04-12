@@ -1,0 +1,17 @@
+
+
+
+.panelBannerBg{
+    background-color: #7daca9;
+}
+
+.transparent-btn-addUser{
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.transparent-btn-addUser:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

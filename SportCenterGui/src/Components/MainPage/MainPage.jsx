@@ -1,6 +1,5 @@
 import MainContent from "./MainContent/MainContent.jsx";
 import SportContent from "./SportContent/SportContent.jsx";
-import {Navbar} from "react-bootstrap";
 import NavbarComp from "../Navbar/NavbarComp.jsx";
 import "./MainPage.css"
 

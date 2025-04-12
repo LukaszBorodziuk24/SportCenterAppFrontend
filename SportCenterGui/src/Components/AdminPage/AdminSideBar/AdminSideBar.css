@@ -1,0 +1,9 @@
+
+
+.adminSidebarBg{
+    width: 90%;
+    height: 100vh;
+    background: rgba(250, 250, 250, 0.13);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(3px);
+}

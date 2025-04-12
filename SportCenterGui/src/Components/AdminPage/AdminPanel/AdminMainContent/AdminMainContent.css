@@ -1,0 +1,15 @@
+
+
+
+.blurBg{
+    background: rgba(250, 250, 250, 0.13);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.whiteBg{
+    background-color: rgb(255, 253, 248);
+    height: 95%;
+    width: 98%;
+}
+

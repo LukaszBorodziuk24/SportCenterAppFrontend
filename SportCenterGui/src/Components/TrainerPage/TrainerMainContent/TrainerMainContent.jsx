@@ -4,84 +4,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import ReactLoading from 'react-loading';
 import SportBanner from "../SportBanner/SportBanner.jsx";
+import useUsersFetch from "../../../hooks/useFetchUsers.js";
 
 
 const TrainerMainContent = ({sport, filterBy}) => {
-    const [users, setUsers] = useState([]);
-    const [hasMore, setHasMore] = useState(true);
-    const [componentKey, setComponentKey] = useState(0);
-    const loadingRef = useRef(false);
-    const [showLoading, setShowLoading] = useState(false);
-    const abortControllerRef = useRef(null);
-    const pageSize = 8;
-    const pageNumberRef = useRef(1);
-    const [pageNumberTrigger, setPageNumberTrigger] = useState(false);
+    const [componentKey, setComponentKey] = useState(0); // Initialize componentKey state
 
-
-    const fetchUsers = async () => {
-        if (loadingRef.current) return;
-        loadingRef.current = true;
-        setShowLoading(true);
-
-        try {
-            abortControllerRef.current = new AbortController();
-            const signal = abortControllerRef.current.signal;
-
-            const response =
-                await fetch(`https://localhost:7221/api/Trainer/getAll?pageNumber=${pageNumberRef.current}&pageSize=${pageSize}&sortBy=""&filterBy=${filterBy}`,{
-                    method: 'GET',
-                    signal
-                });
-            const data = await response.json();
-
-            setUsers(prevUsers => [...prevUsers, ...data]);
-
-            if (data.length < pageSize) {
-                setHasMore(false);
-            }
-
-        } catch (error) {
-            console.error("Error fetching users:", error);
-        } finally {
-            loadingRef.current = false;
-            setShowLoading(false);
-        }
-    };
+    const { users, hasMore, showLoading, loadMore } = useUsersFetch(filterBy, 8, componentKey);
 
     useEffect(() => {
-        const loadData = async () => {
-            await fetchUsers();
-        };
-        loadData().catch(error => console.error('Error in useEffect:', error));
-
-    }, [pageNumberTrigger]);
-
-    useEffect(() => {
-        if (!abortControllerRef.current && loadingRef.current) {
-            abortControllerRef.current.abort();
-        }
-        if (filterBy) {
-            setUsers([]);
-            setHasMore(true);
-            setShowLoading(false);
-            setComponentKey(componentKey + 1);
-            pageNumberRef.current = 1;
-        }
+        setComponentKey((prevKey) => prevKey + 1);
     }, [filterBy]);
-
-    useEffect(() => {
-        if (pageNumberRef.current === 1 || filterBy) {
-            const loadData = async () => {
-                await fetchUsers();
-            };
-            loadData().catch(error => console.error('Error in useEffect:', error));
-        }
-    }, [pageNumberTrigger, filterBy]);
-
-    const loadMore = () => {
-        pageNumberRef.current += 1;
-        setPageNumberTrigger(prev => !prev);
-    };
 
     return (
         <InfiniteScroll

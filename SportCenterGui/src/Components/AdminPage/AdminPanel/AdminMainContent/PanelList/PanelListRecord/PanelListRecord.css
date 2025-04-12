@@ -1,0 +1,38 @@
+
+
+.panelRecordBg{
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.15);
+    color: #fff; /* Text color */
+    height: 5vh;
+}
+
+.deleteUserBtn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5vw;
+    height: 3.5vh;
+    background-color: rgba(180, 26, 26, 0.89);
+}
+
+.deleteUserBtn:hover{
+    background-color: #ff0000;
+    cursor: pointer;
+}
+
+.updateUserBtn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5vw;
+    height: 3.5vh;
+    background-color: #63dcc5;
+}
+
+.updateUserBtn:hover{
+    background-color: #1ee5ba;
+    cursor: pointer;
+}

@@ -13,7 +13,7 @@ import SportBanner from "./SportBanner/SportBanner.jsx";
 
 const TrainerPage = () => {
     const {sport} = useParams();
-    const [filterBy, setFilterBy] = useState("a");
+    const [filterBy, setFilterBy] = useState("");
 
 
     const sportType={

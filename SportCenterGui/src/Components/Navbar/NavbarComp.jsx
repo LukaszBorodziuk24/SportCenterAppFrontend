@@ -23,6 +23,7 @@ const NavbarComp = () => {
                               onClick={() => handleNavigation("/trainer/default")}>Trainer</Nav.Link>
                     <Nav.Link className="navButtons" href="#diet">Diet</Nav.Link>
                     <Nav.Link className="navButtons" href="#contact">Contact</Nav.Link>
+                    <Nav.Link className="navButtons" onClick={() => handleNavigation("/admin")}>Admin</Nav.Link>
                 </Nav>
                 <Nav className="ms-auto">
                     <Button className={"mainAppButton border-0 me-4 rounded-5 logInButton"}
