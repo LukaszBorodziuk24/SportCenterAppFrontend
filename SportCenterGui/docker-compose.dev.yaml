@@ -1,0 +1,11 @@
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: sportcenter-react-dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"

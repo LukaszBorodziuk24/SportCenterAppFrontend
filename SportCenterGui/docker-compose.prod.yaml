@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  react-app:
+    build: .
+    container_name: sportcenter-react-prod
+    ports:
+      - "80:80"
+    command: [ "nginx", "-g", "daemon off;" ]

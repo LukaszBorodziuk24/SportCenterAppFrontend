@@ -5,10 +5,12 @@ import {useNavigate} from "react-router-dom";
 import {FaArrowLeft} from "react-icons/fa";
 import {useState} from "react";
 import {FiEye, FiEyeOff} from "react-icons/fi";
+import { useAuth } from "../../../contexts/AuthContext.jsx";
 
 
 const LoginForm = () => {
 
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     const [showPassword,setShowPassword] = useState(false);
@@ -17,6 +19,8 @@ const LoginForm = () => {
         email:'',
         password:''
     })
+    const [error, setError] = useState(null);
+
 
     const handleChange = (e)=>{
         const {name,value} = e.target;
@@ -28,30 +32,16 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await fetch('https://localhost:7221/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: formData.email,
-                    password: formData.password
-                })
-            });
+        setError(null);
+        console.log(formData);
 
-            if (response.ok) {
-                const data = await response.json();
-                const jtw = data.accessToken;
-                console.log(jtw);
-                localStorage.setItem("jtw",jtw);
-                handleNavigation("/");
-            } else {
-                const errorData = await response.json();
-                console.error('Registration failed:', errorData);
-            }
-        } catch (error) {
-            console.error('An error occurred:', error);
+        const result = await login(formData);
+        console.log(result.success);
+
+        if (result.success) {
+            navigate("/");
+        } else {
+            setError(result.error);
         }
     };
 

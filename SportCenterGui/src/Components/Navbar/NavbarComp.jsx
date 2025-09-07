@@ -1,10 +1,12 @@
 import "./NavbarComp.css"
 import {Navbar, Nav, Button} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 
 const NavbarComp = () => {
 
     const navigate = useNavigate();
+    const { isAuthorized, logout } = useAuth();
 
     const handleNavigation = (path) => {
         navigate(path);
@@ -26,8 +28,24 @@ const NavbarComp = () => {
                     <Nav.Link className="navButtons" onClick={() => handleNavigation("/admin")}>Admin</Nav.Link>
                 </Nav>
                 <Nav className="ms-auto">
-                    <Button className={"mainAppButton border-0 me-4 rounded-5 logInButton"}
-                            onClick={() => handleNavigation("/login")}>Log in</Button>
+                    {isAuthorized ? (
+                        <Button
+                            className={"mainAppButton border-0 me-4 rounded-5 logInButton"}
+                            onClick={() => {
+                                logout();
+                                handleNavigation("/");
+                            }}
+                        >
+                            Logout
+                        </Button>
+                    ) : (
+                        <Button
+                            className={"mainAppButton border-0 me-4 rounded-5 logInButton"}
+                            onClick={() => handleNavigation("/login")}
+                        >
+                            Log in
+                        </Button>
+                    )}
                 </Nav>
 
             </Navbar.Collapse>

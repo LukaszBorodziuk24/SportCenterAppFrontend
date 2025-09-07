@@ -8,7 +8,6 @@ import {FaArrowLeft} from "react-icons/fa";
 const RegisterForm = () => {
     const navigate = useNavigate();
 
-    // Stan formularza
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -16,6 +15,8 @@ const RegisterForm = () => {
         password: '',
         confirmPassword: ''
     });
+
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -67,7 +68,7 @@ const RegisterForm = () => {
         }
 
         try {
-            const response = await fetch('https://localhost:7221/api/user/register', {
+            const response = await fetch(`${apiUrl}/api/user/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

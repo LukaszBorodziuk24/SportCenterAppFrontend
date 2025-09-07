@@ -11,5 +11,8 @@ export default defineConfig({
   },
   optimizeDeps:{
     exclude: ['@react-spring']
+  },
+  server: {
+    host: true
   }
 })

@@ -6,10 +6,9 @@ import {GiWeightScale} from "react-icons/gi";
 import {useState} from "react";
 import BmiForm from "./BmiForm/BmiForm.jsx";
 import BmiResult from "./BmiResult/BmiResult.jsx";
-
+import { bmiAPI } from "../../../../../../services/api.js";
 
 const ExpandedBmi = ({onClose}) => {
-
     const [bmiData, setBmiData] = useState({
         gender: 0,
         height: "",
@@ -26,55 +25,33 @@ const ExpandedBmi = ({onClose}) => {
 
     const handleSubmitCalc = async (e) => {
         e.preventDefault();
-
         try {
-            const response = await fetch('https://localhost:7221/api/bmi/calculate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    weight: bmiData.weight,
-                    height: bmiData.height
-                })
+            const data = await bmiAPI.calculate({
+                weight: bmiData.weight,
+                height: bmiData.height
             });
-            const data = await response.json();
             setBmiResult({
                 bmiCalcResult: data.bmiCalcResult,
                 bmiMsg: data.bmiMsg
             })
             setNotSubmitted(false);
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error("Error calculating BMI:", error);
         }
     }
-
     const handleSubmitSave = async () => {
-        const token = localStorage.getItem('jtw');
-
         try {
-            const response = await fetch('https://localhost:7221/api/bmi/save', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    bmiResult: bmiResult.bmiCalcResult,
-                    weight: bmiData.weight,
-                    height: bmiData.height,
-                    age: bmiData.age,
-                    declaredGender: bmiData.gender
-
-                })
+            await bmiAPI.save({
+                bmiResult: bmiResult.bmiCalcResult,
+                weight: bmiData.weight,
+                height: bmiData.height,
+                age: bmiData.age,
+                declaredGender: bmiData.gender
             });
-            
-            if (response.ok)
-                onClose();
+            onClose();
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error("Error saving BMI data:", error);
         }
-
     }
 
     return (

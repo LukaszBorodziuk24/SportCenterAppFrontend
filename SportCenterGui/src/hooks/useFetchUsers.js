@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { trainerAPI } from '../services/api.js';
 
 const useUsersFetch = (filterBy, pageSize, componentKey) => {
     const [users, setUsers] = useState([]);
@@ -17,16 +18,18 @@ const useUsersFetch = (filterBy, pageSize, componentKey) => {
         try {
             abortControllerRef.current = new AbortController();
             const signal = abortControllerRef.current.signal;
-
-            const response = await fetch(
-                `https://localhost:7221/api/Trainer/getAll?pageNumber=${pageNumberRef.current}&pageSize=${pageSize}&sortBy=""&filterBy=${filterBy}`,
+            // Using centralized API service with auth and params
+            const data = await trainerAPI.getAll(
                 {
-                    method: 'GET',
-                    signal,
-                }
+                    pageNumber: pageNumberRef.current,
+                    pageSize,
+                    filterBy,
+                    sortBy: '',
+                    isAscending: true,
+                    includePhoto: false,
+                },
+                { signal }
             );
-
-            const data = await response.json();
 
             setUsers((prevUsers) => [...prevUsers, ...data]);
 

@@ -20,7 +20,7 @@ const Tiles = () => {
         },
         enter: { transform: 'scale(1)', opacity: 1 },
         leave: { transform: 'scale(0.1)', opacity: 0 },
-        config: { duration: 300 },
+        config: { duration: 400 },
         keys: [expandedTile]
     });
 
