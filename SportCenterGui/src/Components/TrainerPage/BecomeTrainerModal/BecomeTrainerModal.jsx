@@ -5,20 +5,20 @@ import { trainerAPI } from "../../../services/api.js";
 const BecomeTrainerModal = ({ show, onClose, onSuccess }) => {
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
-    const [sportType, setSportType] = useState("");
+    const [userSportType, setUserSportType] = useState("");
     const [trainerPhoto, setTrainerPhoto] = useState(null);
-    const [trainerAvatar, setTrainerAvatar] = useState(null);
-    const [trainerBackground, setTrainerBackground] = useState(null);
+    const [avatarPhoto, setAvatarPhoto] = useState(null);
+    const [coverPhoto, setCoverPhoto] = useState(null);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState("");
 
     const resetState = () => {
         setCity("");
         setCountry("");
-        setSportType("");
+        setUserSportType("");
         setTrainerPhoto(null);
-        setTrainerAvatar(null);
-        setTrainerBackground(null);
+        setAvatarPhoto(null);
+        setCoverPhoto(null);
         setSubmitting(false);
         setError("");
     };
@@ -38,10 +38,10 @@ const BecomeTrainerModal = ({ show, onClose, onSuccess }) => {
             await trainerAPI.becomeTrainer({
                 city,
                 country,
-                sportType,
+                userSportType,
                 trainerPhoto,
-                trainerAvatar,
-                trainerBackground,
+                avatarPhoto,
+                coverPhoto,
             });
             resetState();
             onSuccess && onSuccess();
@@ -88,11 +88,11 @@ const BecomeTrainerModal = ({ show, onClose, onSuccess }) => {
                             </Form.Group>
                         </Col>
                         <Col xs={12}>
-                            <Form.Group controlId="sportType">
+                            <Form.Group controlId="userSportType">
                                 <Form.Label>Sport Type</Form.Label>
                                 <Form.Select
-                                    value={sportType}
-                                    onChange={(e) => setSportType(e.target.value)}
+                                    value={userSportType}
+                                    onChange={(e) => setUserSportType(e.target.value)}
                                     required
                                 >
                                     <option value="" disabled>Select sport</option>
@@ -114,23 +114,23 @@ const BecomeTrainerModal = ({ show, onClose, onSuccess }) => {
                             </Form.Group>
                         </Col>
                         <Col xs={12}>
-                            <Form.Group controlId="trainerAvatar">
+                            <Form.Group controlId="avatarPhoto">
                                 <Form.Label>Profile Avatar</Form.Label>
                                 <Form.Control
                                     type="file"
                                     accept="image/*"
-                                    onChange={(e) => setTrainerAvatar(e.target.files?.[0] || null)}
+                                    onChange={(e) => setAvatarPhoto(e.target.files?.[0] || null)}
                                     required
                                 />
                             </Form.Group>
                         </Col>
                         <Col xs={12}>
-                            <Form.Group controlId="trainerBackground">
-                                <Form.Label>Profile Background</Form.Label>
+                            <Form.Group controlId="coverPhoto">
+                                <Form.Label>Profile Cover Photo</Form.Label>
                                 <Form.Control
                                     type="file"
                                     accept="image/*"
-                                    onChange={(e) => setTrainerBackground(e.target.files?.[0] || null)}
+                                    onChange={(e) => setCoverPhoto(e.target.files?.[0] || null)}
                                     required
                                 />
                             </Form.Group>

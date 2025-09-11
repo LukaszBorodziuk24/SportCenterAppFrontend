@@ -1,6 +1,7 @@
 import "./AdminPage.css"
 import AdminSideBar from "./AdminSideBar/AdminSideBar.jsx";
 import AdminPanel from "./AdminPanel/AdminPanel.jsx";
+import { Outlet } from "react-router-dom";
 import {Row} from "react-bootstrap";
 
 
@@ -16,7 +17,7 @@ const AdminPage = () =>{
                 </div>
 
                 <div className={"col-10 p-0 w-90"}>
-                    <AdminPanel/>
+                    <Outlet/>
                 </div>
             </Row>
         </div>

@@ -7,3 +7,22 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(3px);
 }
+
+.adminNavLink{
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition: all .2s ease;
+}
+
+.adminNavLink:hover{
+    background: rgba(255,255,255,0.18);
+    text-decoration: none;
+}
+
+.adminNavLink.active{
+    background: rgba(116,179,164,0.6);
+    color: #0b2f2a;
+    font-weight: 600;
+}

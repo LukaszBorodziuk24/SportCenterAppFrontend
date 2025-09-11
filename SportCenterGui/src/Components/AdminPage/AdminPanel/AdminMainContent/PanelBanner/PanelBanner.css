@@ -3,6 +3,7 @@
 
 .panelBannerBg{
     background-color: #7daca9;
+    min-height: 70px;
 }
 
 .transparent-btn-addUser{

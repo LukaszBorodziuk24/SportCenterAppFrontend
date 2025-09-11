@@ -11,7 +11,7 @@ const PanelList = ({filterBy})=>{
 
     const [componentKey, setComponentKey] = useState(0); // Initialize componentKey state
 
-    const { users, hasMore, showLoading, loadMore } = useUsersFetch(filterBy, 15, componentKey);
+    const { data: users, hasMore, showLoading, loadMore } = useUsersFetch(filterBy, 15, componentKey);
 
     useEffect(() => {
         setComponentKey((prevKey) => prevKey + 1);

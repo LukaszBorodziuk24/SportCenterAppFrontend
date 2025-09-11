@@ -10,7 +10,7 @@ import useUsersFetch from "../../../hooks/useFetchUsers.js";
 const TrainerMainContent = ({sport, filterBy}) => {
     const [componentKey, setComponentKey] = useState(0); // Initialize componentKey state
 
-    const { users, hasMore, showLoading, loadMore } = useUsersFetch(filterBy, 8, componentKey);
+    const { data: users, hasMore, showLoading, loadMore } = useUsersFetch(filterBy, 8, componentKey);
 
     useEffect(() => {
         setComponentKey((prevKey) => prevKey + 1);

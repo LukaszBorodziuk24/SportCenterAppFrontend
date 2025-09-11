@@ -1,0 +1,82 @@
+
+/* Photo card styles for RequestsRecord */
+.request-photos-card {
+    margin: 0 auto 24px auto;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 24px 32px 16px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    z-index: 10;
+}
+
+.request-photos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.close-photos-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+.close-photos-btn:hover {
+    color: #d33;
+}
+
+.request-photos-content {
+    display: flex;
+    gap: 32px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.photo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: #f7f7f7;
+    border-radius: 10px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.request-photo-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+}
+.requestBtn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5vw;
+    height: 3.5vh;
+}
+
+.requestBtn.neutral{background-color: #63dcc5;}
+.requestBtn.neutral:hover{background-color: #1ee5ba; cursor: pointer;}
+
+.requestBtn.accept{background-color: #2bb673;}
+.requestBtn.accept:hover{background-color: #22a164; cursor: pointer;}
+
+.requestBtn.decline{background-color: rgba(180, 26, 26, 0.89);}
+.requestBtn.decline:hover{background-color: #ff0000; cursor: pointer;}
+
+
