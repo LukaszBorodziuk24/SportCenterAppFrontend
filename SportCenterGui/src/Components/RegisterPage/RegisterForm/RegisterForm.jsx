@@ -1,6 +1,7 @@
 import {Button, Form, FormGroup, FormLabel, FormText, InputGroup} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { authAPI } from '../../../services/api';
 import "./RegisterForm.css";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import {FaArrowLeft} from "react-icons/fa";
@@ -16,7 +17,7 @@ const RegisterForm = () => {
         confirmPassword: ''
     });
 
-    const apiUrl = import.meta.env.VITE_API_URL;
+
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -68,28 +69,20 @@ const RegisterForm = () => {
         }
 
         try {
-            const response = await fetch(`${apiUrl}/api/user/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: formData.firstName,
-                    lastName: formData.lastName,
-                    email: formData.email,
-                    password: formData.password
-                })
+            await authAPI.register({
+                name: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                password: formData.password
             });
-
-            if (response.ok) {
-                console.log('Registration successful');
-                handleNavigation("/login");
-            } else {
-                const errorData = await response.json();
-                console.error('Registration failed:', errorData);
-            }
+            console.log('Registration successful');
+            handleNavigation("/login");
         } catch (error) {
-            console.error('An error occurred:', error);
+            if (error.response && error.response.data) {
+                console.error('Registration failed:', error.response.data);
+            } else {
+                console.error('An error occurred:', error);
+            }
         }
     };
 

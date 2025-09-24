@@ -1,0 +1,32 @@
+.review-section-card {
+  height: 90vh;
+  overflow: hidden; /* Prevent entire card from scrolling */
+}
+.review-section-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent body from scrolling */
+}
+
+.all-reviews-section {
+  min-height: 0; /* Allow flex shrinking */
+  overflow: hidden; /* Prevent section from scrolling */
+}
+
+#review-scrollable-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+#review-scrollable-container::-webkit-scrollbar {
+  display: none;
+}
+
+.review-section-title {
+  color: #f8f9fa;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0; /* Don't shrink the title */
+}

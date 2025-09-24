@@ -1,15 +1,25 @@
 import "./TrainerTile.css"
-import {Button, Card, Col, Row} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Button, Card, Col } from "react-bootstrap";
 import KickboxingBg from "@assets/test.jpg";
-import {FaHeart} from "react-icons/fa";
-import {FaLocationDot} from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 
-
-const TrainerTile = ({user}) =>{
-    return(
-        <Card className={"trainerTile bg-transparent border-0 "}>
+const TrainerTile = ({ user }) => {
+    const navigate = useNavigate();
+    const userPreview = {
+        name: user.name,
+        lastName: user.lastName,
+        city: user.city,
+        country: user.country,
+    }
+    const handleClick = () => {
+        navigate(`/trainer/profile/${user.id}`, { state: { user: userPreview } });
+    };
+    return (
+        <Card className={"trainerTile bg-transparent border-0 "} style={{ cursor: "pointer" }} onClick={handleClick}>
             <Card.Img
-                src= {KickboxingBg}
+                src={KickboxingBg}
                 className={"h-100 object-fit-cover rounded-5"}
             />
             <Card.ImgOverlay
@@ -24,7 +34,7 @@ const TrainerTile = ({user}) =>{
                 </Col>
             </Card.ImgOverlay>
         </Card>
-    )
-}
+    );
+};
 
-export default TrainerTile
+export default TrainerTile;

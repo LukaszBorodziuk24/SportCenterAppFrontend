@@ -1,6 +1,8 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authAPI, setUnauthorizedHandler } from '../services/api.js'
+import { jwtDecode } from 'jwt-decode';
+
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -12,13 +14,33 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [jwt, setJwt] = useState(localStorage.getItem('jwt') || null);
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState({
+    id: null,
+    roles: []
+  });
 
-  // Po starcie sprawdzamy, czy JWT jest w localStorage
+
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) setJwt(token);
+    if (jwt) {
+      try {
+        const decoded = jwtDecode(jwt);
+        setUserData({
+          id: decoded.id,
+          roles: decoded.roles
+            ? Array.isArray(decoded.roles)
+              ? decoded.roles
+              : decoded.roles.split(",")
+            : []
+        });
+      } catch (error) {
+        console.error('Failed to decode JWT:', error);
+        logout();
+      }
+    } else {
+      setUserData({ id: null, roles: [] });
+    }
     setLoading(false);
-  }, []);
+  }, [jwt]);
 
   const login = async (credentials) => {
     try {
@@ -61,9 +83,28 @@ export const AuthProvider = ({ children }) => {
   // isAuthorized = true jeśli mamy JWT
   const isAuthorized = !!jwt;
 
+  // Helper functions for roles and ownership
+  const hasRole = (role) => {
+    return userData.roles.includes(role);
+  };
+
+  const isCurrentUser = (userId) => {
+    return userData.id === userId;
+  };
+  
+
   return (
     <AuthContext.Provider
-      value={{ jwt, isAuthorized, loading, login, register, logout }}
+      value={{ 
+        jwt,
+        isAuthorized,
+        loading,
+        hasRole,
+        isCurrentUser,
+        login,
+        register,
+        logout
+      }}
     >
       {children}
     </AuthContext.Provider>

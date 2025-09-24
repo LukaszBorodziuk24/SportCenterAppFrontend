@@ -1,0 +1,9 @@
+.comment-form .star {
+  color: #ffc107;
+  opacity: 0.5;
+  margin-right: 2px;
+  transition: opacity 0.15s;
+}
+.comment-form .star.filled {
+  opacity: 1;
+}

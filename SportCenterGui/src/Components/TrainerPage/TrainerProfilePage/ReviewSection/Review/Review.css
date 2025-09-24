@@ -1,0 +1,25 @@
+.comment-card {
+  background: rgba(30, 30, 30, 0.92);
+  border: 1px solid #343a40;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s;
+}
+.comment-card:hover {
+  box-shadow: 0 4px 16px rgba(13,110,253,0.18);
+}
+.comment-user {
+  color: #f8f9fa;
+  font-size: 1.05rem;
+}
+.star {
+  opacity: 0.5;
+  margin-right: 1px;
+}
+.star.filled {
+  opacity: 1;
+  color: #ffc107;
+}
+.comment-text {
+  font-size: 0.98rem;
+  color: #dee2e6;
+}

@@ -149,5 +149,3 @@ const BecomeTrainerModal = ({ show, onClose, onSuccess }) => {
 };
 
 export default BecomeTrainerModal;
-
-

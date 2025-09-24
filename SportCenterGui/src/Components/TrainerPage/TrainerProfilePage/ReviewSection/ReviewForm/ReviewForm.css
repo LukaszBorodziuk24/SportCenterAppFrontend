@@ -1,0 +1,43 @@
+.comment-form {
+  background: rgba(40, 40, 40, 0.97);
+  border: 1px solid #343a40;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.comment-form input,
+.comment-form textarea {
+  background: #23272b;
+  color: #f8f9fa;
+  border: 1px solid #495057;
+}
+.comment-form input:focus,
+.comment-form textarea:focus {
+  background: #23272b;
+  color: #fff;
+  border-color: #0d6efd;
+}
+
+.stars-wrapper {
+  display: flex;
+  margin-top: 4px;
+}
+
+/* Red cancel button styling */
+.redAppButton {
+  background: radial-gradient(50% 50% at 50% 50%, #DC3545 0%, #B02A37 100%);
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.redAppButton:hover:not(:disabled) {
+  background: radial-gradient(50% 50% at 50% 50%, #E74C3C 0%, #C0392B 100%) !important;
+  color: white;
+}
+
+.redAppButton:active:not(:disabled) {
+  background: radial-gradient(50% 50% at 50% 50%, #C0392B 0%, #E74C3C 100%) !important;
+}
+
+.redAppButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

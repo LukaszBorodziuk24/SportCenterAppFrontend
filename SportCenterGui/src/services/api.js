@@ -99,7 +99,21 @@ export const trainerAPI = {
       ...(typeof isAscending === 'boolean' ? { IsAscending: isAscending } : {}),
       ...(typeof includePhoto === 'boolean' ? { IncludePhoto: includePhoto } : {}),
     };
-    return (await apiAuth.get('/Trainer/getAll', { params, signal })).data;
+    return (await apiAuth.get('/trainer/getAll', { params, signal })).data;
+  },
+  getProfileDetails: async (trainerId, { signal } = {}) => {
+    const sportTypeMap = {
+      0: "gym",
+      1: "kickboxing",
+      2: "crossfit",
+    };
+    const data = (await apiAuth.get(`/trainer/details/${trainerId}`, { signal })).data;
+    return {
+      ...data,
+      coverPhoto: convertByteArrayToDataUrl(data.coverPhoto, data.coverPhotoContentType || 'image/jpeg'),
+      avatarPhoto: convertByteArrayToDataUrl(data.avatarPhoto, data.avatarPhotoContentType || 'image/jpeg'),
+      sportType: sportTypeMap[data.sportType] || data.sportType
+    };
   },
   becomeTrainer: async ({ city, country, userSportType, trainerPhoto, avatarPhoto, coverPhoto }) => {
     const sportTypeMap = {
@@ -123,6 +137,28 @@ export const trainerAPI = {
       })
     ).data;
   },
+};
+
+export const calendarAPI = {
+  createTrainingSlot: async (slotData) => {
+    return (await apiAuth.post('/calendar/training-slots', slotData)).data;
+  },
+  getTrainingSlots: async (ownerId, { startDate, endDate }, { signal } = {}) => {
+    const params = {};
+    if (startDate) params.startDate = startDate;
+    if (endDate) params.endDate = endDate;
+    
+    return (await apiAuth.get(`/calendar/training-slots/${ownerId}`, { params, signal })).data;
+  },
+  deleteTrainingSlot: async (slotId) => {
+    return (await apiAuth.delete(`/calendar/training-slots/${slotId}`)).data;
+  },
+  createReservation: async (slotId) => {
+    return (await apiAuth.post(`/calendar/training-slots/${slotId}/reservations`)).data;
+  },
+  deleteReservation: async (slotId) => {
+    return (await apiAuth.delete(`/calendar/training-slots/${slotId}/reservations`)).data;
+  }
 };
 
 export const adminAPI = {
@@ -165,6 +201,29 @@ export const adminAPI = {
   rejectTrainerRequest: async (requestId) => {
     return (await apiAuth.post(`/admin/trainer-requests/${requestId}/reject`)).data;
   },
+};
+
+export const reviewAPI = {
+  createOrUpdateReview: async (trainerId, reviewData) => {
+    return (await apiAuth.post(`/review/${trainerId}`, reviewData)).data;
+  },
+  getMyReview: async (trainerId) => {
+    try {
+      return (await apiAuth.get(`/review/${trainerId}/mine`)).data;
+    } catch (error) {
+      if (error.response?.status === 404) {
+        return null; // No review found
+      }
+      throw error;
+    }
+  },
+  getReviews: async (trainerId, { pageNumber = 1, pageSize = 10 }, { signal } = {}) => {
+    const params = {
+      PageNumber: pageNumber,
+      PageSize: pageSize
+    };
+    return (await apiAuth.get(`/review/${trainerId}`, { params, signal })).data;
+  }
 };
 
 export { apiAuth, apiPublic };

@@ -1,0 +1,110 @@
+/* Wysokość komórek w widoku month (day cell height) */
+.fc .fc-daygrid-day-frame {
+  min-height: 50px; /* z powrotem jakaś rozsądna wysokość */
+  height: auto !important;
+}
+/* Pasek nagłówka (toolbar) */
+.fc .fc-toolbar {
+  background-color: #212529;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Przyciski */
+.fc .fc-button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.fc .fc-button:hover {
+  background: #495057;
+}
+.fc .fc-button.fc-button-active {
+  background: #0d6efd;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.6);
+}
+
+/* Nagłówek kalendarza (nazwy dni tygodnia) */
+.fc .fc-col-header-cell {
+  background: #343a40;
+  color: #f8f9fa;
+  font-weight: 600;
+  padding: 0.5rem;
+  border: 1px solid #495057;
+}
+
+/* Dni w widoku month */
+.fc .fc-daygrid-day {
+  background: #2c3034;
+  color: #f8f9fa;
+  border: 1px solid #495057;
+  transition: background 0.2s ease;
+}
+.fc .fc-daygrid-day:hover {
+  background: #3a3f44;
+}
+.fc .fc-daygrid-day.fc-day-today {
+  background: rgba(13, 110, 253, 0.15);
+  border-radius: 6px;
+}
+
+/* Numery dni */
+.fc .fc-daygrid-day-number {
+  font-weight: 600;
+  color: #f8f9fa;
+  padding: 0.25rem;
+}
+
+/* Eventy */
+.fc .fc-event {
+  background: #198754; /* zielony Bootstrap (wolny slot) */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.fc .fc-event:hover {
+  opacity: 0.85;
+}
+
+/* Godziny w timeGrid */
+.fc .fc-timegrid-slot {
+  background: #2c3034;
+  border-color: #495057;
+}
+.fc .fc-timegrid-slot-label {
+  color: #adb5bd;
+  font-size: 0.8rem;
+}
+
+/* Linia aktualnej godziny */
+.fc .fc-timegrid-now-indicator-line {
+  border-color: #dc3545; /* czerwony */
+}
+.fc .fc-timegrid-now-indicator-arrow {
+  border-top-color: #dc3545;
+}
+
+/* Tytuł (np. September 2025) */
+.fc .fc-toolbar-title {
+  color: #f8f9fa;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Hide scrollbar but keep scrollable */
+.fc .fc-scroller {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.fc .fc-scroller::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

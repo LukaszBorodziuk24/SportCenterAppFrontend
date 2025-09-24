@@ -1,0 +1,92 @@
+.blurBg {
+  background: rgba(250, 250, 250, 0.13);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(3px);
+  color: #fff;
+}
+.trainer-profile-card {
+  width: 100%;
+  max-width: 100vw;
+}
+
+.trainer-profile-main-container {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.trainer-profile-content {
+  width: 90vw;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.trainer-cover-img {
+  height: 150px;
+  object-fit: cover;
+  border-radius: 1.5rem 1.5rem 0 0;
+  filter: brightness(0.85);
+}
+
+.trainer-avatar-img {
+  width: 140px;
+  height: 140px;
+  border: 5px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.22);
+  max-width: 40vw;
+}
+
+@media (max-width: 600px) {
+  .trainer-profile-content {
+    width: 100vw;
+  }
+  .trainer-avatar-img {
+    width: 90px;
+    height: 90px;
+    border-width: 3px;
+  }
+}
+
+.trainer-profile-row {
+  top: -64px;
+}
+
+.trainer-profile-comments-section {
+  width: 90vw;
+  max-width: 1400px;
+  margin: 110px auto 10px auto;
+  min-height: 10vh;
+  max-height: 40vh;
+  overflow: hidden;
+  transition: min-height 0.4s, max-height 0.4s;
+}
+.trainer-profile-comments-section.expanded {
+  min-height: 90vh;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.about-me {
+  min-height: 50vh;
+  max-width: 600px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .about-me {
+    min-height: 35vh;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-me {
+    min-height: 22vh;
+    max-width: 100%;
+  }
+}
