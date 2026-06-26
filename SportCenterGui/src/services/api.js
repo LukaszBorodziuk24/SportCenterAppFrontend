@@ -158,7 +158,18 @@ export const calendarAPI = {
   },
   deleteReservation: async (slotId) => {
     return (await apiAuth.delete(`/calendar/training-slots/${slotId}/reservations`)).data;
-  }
+  },
+  getMyReservations: async ({ startDate, endDate } = {}, { signal } = {}) => {
+  const params = {};
+
+  if (startDate) params.startDate = startDate;
+  if (endDate) params.endDate = endDate;
+
+  return (await apiAuth.get('/calendar/training-slots/my-reservations', {
+    params,
+    signal
+  })).data;
+  },
 };
 
 export const adminAPI = {

@@ -1,0 +1,154 @@
+.userSlotsTile {
+    background: linear-gradient(135deg, #24cea6 0%, #014136 100%);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0px;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.userSlotsTile .h3 {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1em;
+    line-height: 1.5;
+    max-width: 100%;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.slot-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.slot-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.slot-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #03e7b2, #6d989e);
+}
+
+.slot-card h5 {
+    color: #333;
+    margin: 0 0 15px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.slot-card p {
+    color: #666;
+    margin: 8px 0;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.slot-card p svg {
+    margin-right: 8px;
+    color: #03e7b2;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(255, 71, 87, 0.3);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #ff6b81, #ff4757);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 71, 87, 0.4);
+}
+
+.week-navigation-bottom {
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-outline-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline-secondary svg {
+    margin-left: 8px;
+}
+
+.btn-outline-secondary svg:last-child {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.text-center p {
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.trainer-link {
+    color: #03e7b2;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.trainer-link:hover {
+    color: #00a896;
+    text-decoration: underline;
+}

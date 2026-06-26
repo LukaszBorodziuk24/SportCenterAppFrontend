@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 import './Tiles.css';
 import BmiTile from "./BmiTile/BmiTile.jsx";
+import TrainerActionTile from "./TrainerActionTile/TrainerActionTile.jsx";
 import ExpandedTiles from "./ExpandedTiles/ExpandedTiles.jsx";
+import RankingTile from './RankingTile/RankingTile.jsx';
+import SlotsTile from './SlotsTile/SlotsTile.jsx';
 
 const Tiles = () => {
     const [expandedTile, setExpandedTile] = useState(null);
@@ -25,7 +28,10 @@ const Tiles = () => {
     });
 
     const handleExpand = (tile) => {
-        setExpandedTile(tile);
+        // Don't allow expansion for trainer tile as it has its own logic
+        if (tile === 'item4') {
+            setExpandedTile(tile);
+        }
     };
 
     const handleClose = () => {
@@ -36,16 +42,16 @@ const Tiles = () => {
         <>
             <div className="grid-container col-7">
                 <div className={"grid-item item1"} onClick={() => handleExpand('item1')}>
-                    <p>Item 1</p>
+                    <RankingTile/>
                 </div>
-                <div className={"grid-item item2"} onClick={() => handleExpand('item2')}>
-                    <p>Item 2</p>
+                <div className={"grid-item item2"}>
+                    <TrainerActionTile />
                 </div>
                 <div className={"grid-item item3"} onClick={() => handleExpand('item3')}>
-                    <p>Item 3</p>
+                    <SlotsTile />
                 </div>
                 <div className="grid-item item4" onClick={() => handleExpand('item4')}>
-                    <BmiTile reloadOnClose={handleClose}/>
+                    <BmiTile/>
                 </div>
 
                 {transitions((style, item) =>
