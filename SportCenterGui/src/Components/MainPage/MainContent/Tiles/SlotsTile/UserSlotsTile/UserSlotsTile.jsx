@@ -1,6 +1,6 @@
 import "./UserSlotsTile.css";
 import { useState, useEffect } from "react";
-import SlotList from "../SlotList/SlotList.jsx";
+import SlotContainer from "../SlotContainer/SlotContainer.jsx";
 import { calendarAPI } from "../../../../../../services/api.js";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -75,21 +75,16 @@ const UserSlotsTile = () => {
                     <p>Showing reservations for: {currentWeekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {new Date(currentWeekStart.getTime() + 6 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
                 </div>
                 
-                <SlotList 
+                <SlotContainer 
                     slots={slots}
                     onAction={handleCancelReservation}
                     actionType="cancel"
                     canNavigateToTrainer={true}
                     isTrainerView={false}
+                    currentWeekStart={currentWeekStart}
+                    onPrevWeek={handlePrevWeek}
+                    onNextWeek={handleNextWeek}
                 />
-            </div>
-            <div className="week-navigation-bottom d-flex justify-content-center align-items-center mt-3">
-                <button className="btn btn-outline-secondary me-3" onClick={handlePrevWeek}>
-                    <FaChevronLeft /> Previous Week
-                </button>
-                <button className="btn btn-outline-secondary" onClick={handleNextWeek}>
-                    Next Week <FaChevronRight />
-                </button>
             </div>
         </div>
     );

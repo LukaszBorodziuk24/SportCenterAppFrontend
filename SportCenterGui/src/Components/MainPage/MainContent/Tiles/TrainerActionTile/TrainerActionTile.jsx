@@ -6,7 +6,7 @@ import TrainerInfoTile from "./TrainerInfoTile/TrainerInfoTile.jsx";
 
 const TrainerTile = () => {
     // This will be replaced with actual isUserTrainer() function implementation
-    const [isUserTrainer] = useState(false); // Placeholder for future implementation
+    const [isUserTrainer] = useState(true); // Placeholder for future implementation
     
     return (
         <div className="trainerActionTile d-flex flex-column align-items-center justify-content-between h-100">
@@ -16,7 +16,6 @@ const TrainerTile = () => {
                         <TrainerInfoTile />
                     ) : (
                         <BecomeTrainerTile />
-                        // <>hello</>
                     )}
                 </Col>
             </Row>

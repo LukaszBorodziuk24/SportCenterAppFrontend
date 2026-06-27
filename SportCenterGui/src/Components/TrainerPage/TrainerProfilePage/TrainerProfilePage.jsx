@@ -21,6 +21,11 @@ const TrainerProfilePage = () => {
         trainerAPI.getProfileDetails(id).then(apiData => {
             setTrainer(prev => ({
             ...prev,
+            name: apiData.name,
+            lastname: apiData.lastName,
+            rating: apiData.rating,
+            city: apiData.city,
+            country: apiData.country,
             description: apiData.description,
             sportType: apiData.sportType,
             coverPhoto: apiData.coverPhoto,
@@ -44,7 +49,7 @@ const TrainerProfilePage = () => {
                                     <Image src={trainer.avatarPhoto} roundedCircle className="trainer-avatar-img" />
                                 </Col>
                                 <Col>
-                                    <h2 className="mb-1">{trainer.name} {trainer.lastName}</h2>
+                                    <h2 className="mb-1">{trainer.name} {trainer.lastname}</h2>
                                     <div className="d-flex align-items-center gap-3 text-warning fw-semibold">
                                         <span>★ {trainer.rating}</span>
                                         <span className="text-light-emphasis">{trainer.city}, {trainer.country}</span>

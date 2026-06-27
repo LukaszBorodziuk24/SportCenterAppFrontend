@@ -137,6 +137,9 @@ export const trainerAPI = {
       })
     ).data;
   },
+  getTrainerId: async ({ signal } = {}) => {
+      return (await apiAuth.get('/trainer/my-id', { signal })).data;
+  },
 };
 
 export const calendarAPI = {
